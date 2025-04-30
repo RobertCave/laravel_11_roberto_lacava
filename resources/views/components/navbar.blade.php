@@ -12,8 +12,8 @@
             <div class="navbar-nav">
 
                 <a href="{{ route('post.index') }}" class="nav-item nav-link">Blog</a>
-                <a href="#" class="nav-item nav-link">Contattaci</a>
-                <a href="#" class="nav-item nav-link">Informazioni</a>
+                <a href="{{ route('contact-us') }}" class="nav-item nav-link">Contattaci</a>
+                <a href="{{ route('about-us') }}" class="nav-item nav-link">Informazioni</a>
 
                 
 
@@ -28,8 +28,8 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gestione del Blog</a>
                     <div class="dropdown-menu">
                         <a href="{{ route('post.create') }}" class="dropdown-item">Scrivi Post</a>
-                        <a href="#" class="dropdown-item">Cancella Post</a>
-                        <a href="#" class="dropdown-item">Modifica Post</a>
+                        <a href="{{ route('post.index') }}" class="dropdown-item">Modifica Post</a>
+                        <a href="{{ route('post.index') }}" class="dropdown-item">Cancella Post</a>
                     </div>
                 </div>
                 @endauth

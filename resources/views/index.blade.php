@@ -2,10 +2,7 @@
 <x-layout>
 <x-navbar/>
 
-<div
-  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white "
-  style="background-image: url('/sfondo.jpg');  height: 70vh;"
->
+<div class="principale p-5 text-center shadow-1-strong rounded mb-5 text-white ">
   <h1 class="mb-3 h1">Home page Blog</h1>
 
   <p>

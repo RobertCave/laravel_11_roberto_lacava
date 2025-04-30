@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Storage;
-
 use App\Models\Posts;
+
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostEditRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -29,7 +31,7 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
 
@@ -38,13 +40,10 @@ class PostsController extends Controller
             'subtitle' => $request->input('subtitle'),
             'body' => $request->input('body'),
             'img' => $request->file('img')->store('images', 'public'),
-       
-
-
         ]);
 
         // //Cosa fa dopo aver salvato sul database ?
-        return redirect()->route('post.index')->with('successMessage', 'Hai correttamente inserito in database');
+        return redirect()->route('post.index')->with('message', 'Hai correttamente inserito in database');
 
 
     }
@@ -52,32 +51,47 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Posts $posts)
+    public function show(Posts $post)
     {
-        //
+        return view('post.show', compact('post'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Posts $posts)
+    public function edit(Posts $post)
     {
-        //
+        return view('post.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Posts $posts)
+    public function update(PostEditRequest $request, Posts $post)
     {
-        //
+        $post->update([
+            $post->title = $request->input('title'),
+            $post->subtitle = $request->input('subtitle'),
+            $post->body = $request->input('body'),
+            
+        ]);
+        if ($request->file('img')) { 
+            $post->update([
+
+                $post->img = $request->file('img')->store('images', 'public'),
+            ]);
+        }
+
+        return redirect()->route('post.index')->with('message', 'Hai correttamente aggiornato il post');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Posts $posts)
+    public function delete(Posts $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index')->with('message', 'Hai cancellato il post');
     }
 }

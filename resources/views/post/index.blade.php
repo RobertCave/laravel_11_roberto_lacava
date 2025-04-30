@@ -7,14 +7,14 @@
         <p>Questo è solo un esercizio in PHP su laravel e database.</p>
     </header>
     
-    <x-display-error/>
-    <x-display-message/>
-
-
+    
+    
     <!-- loop dei post -->
     <div class="container mt-05">
         <div class="row g-4">
-
+            
+            <x-display-error/>
+            <x-display-message/>
 
             @foreach ($posts as $post)
                 <div class="col-md-6 col-lg-4">
@@ -23,7 +23,18 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->subtitle }}</p>
-                            <a href="#" class="btn btn-secondary btn-sm">Leggi tutto</a>
+                            <div class="d-flex gap-3 align-items-start">
+                            <a href="{{ route('post.show', $post->id) }}" class="btn btn-primary btn-sm">Leggi tutto</a>
+                            
+                            @auth
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-warning btn-sm">Modifica</a>
+                            <form action="{{ route('post.delete', $post->id) }}" method="POST"> 
+                                <button class="btn btn-danger btn-sm"> Elimina</button>
+                                @csrf @method('DELETE')
+
+                            </form>
+                            </div>
+                            @endauth
                     
                         </div>
                     </div>  
@@ -35,5 +46,5 @@
         </div>
     </div>
 
-
+    <x-footer/>
 </x-layout>

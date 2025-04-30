@@ -1,3 +1,10 @@
+.principale{
+height: 70vh;
+background: #22C1C3;
+background: linear-gradient(0deg, rgba(253, 187, 45, 1)  0%, rgba(34, 193, 195, 1) 100%);
+}
+
+
 
 .navbar-nav .nav-link > .fa {
   position: relative;
@@ -23,17 +30,6 @@
 
 /* PAGINA BLOG */
 
-
-.featured-post {
-  background-color: #f8f9fa;
-  padding: 40px;
-  border-radius: 10px;
-}
-
-.featured-post img {
-  max-width: 100%;
-  border-radius: 10px;
-}
 
 .card {
   border: none;
@@ -66,3 +62,28 @@
 }
 
 
+
+
+/* PAGINA LETTURA POST */
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.post-subtitle {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+
+.post-content p {
+  line-height: 1.8;
+  margin-top: 15px;
+}
